@@ -1,5 +1,6 @@
 FROM php:7.2.9-fpm-alpine
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+    adduser php-fpm -s /sbin/nologin  -h /var/www -u 1000 -D  && \
     curl -L "https://install.phpcomposer.com/composer.phar" -o /usr/local/bin/composer  && \
     chmod +x /usr/local/bin/composer  && \
     apk add --no-cache bzip2-dev && docker-php-ext-install -j 2 bz2 && \
